@@ -17,8 +17,12 @@ const AppContext = ({ children }) => {
   );
 
   useEffect(() => {
-    // Aquí puedes realizar peticiones fetch o inicializar el estado global al cargar la app
-  }, []);
+    state.actions.getUsers();
+    state.actions.getProviders();
+    state.actions.getBranchs();
+    state.actions.getAssets();
+    state.actions.getUsersMB();
+    state.actions.getMigrations();  }, []);
 
   return <Context.Provider value={state}>{children}</Context.Provider>;
 };

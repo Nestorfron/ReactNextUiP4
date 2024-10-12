@@ -17,7 +17,8 @@ export const FormBranches = ({ id, btnBranch, branch: initialBranch }) => {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    setBranch({ ...branch, [e.target.name]: e.target.value });
+    console.log("Change detected:", e.target.name, e.target.value);
+        setBranch({ ...branch, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
