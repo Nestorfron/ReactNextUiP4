@@ -118,7 +118,7 @@ export const FormUsers_MB = ({ id, btnUserMB, userMB: initialUserMB }) => {
       }
       actions.getUsersMB();
       if (initialUserMB) {
-        setAsset({
+        setUserMB({
             user_name_MB: initialUserMB.user_name_MB || "",
             is_active: initialUserMB.is_active || "",
             names: initialUserMB.names || "",
@@ -133,57 +133,75 @@ export const FormUsers_MB = ({ id, btnUserMB, userMB: initialUserMB }) => {
     <form onSubmit={handleSubmit}>
       <div className="flex flex-col gap-4">
         <Input
-          label="Tipo de Activo"
-          placeholder="Ingrese el Tipo de Activo"
+          label="Nombre de Usuario MB"
+          placeholder="Ingrese el nombre de usuario MB"
           labelPlacement="outside"
-          name="asset_type"
-          value={asset.asset_type}
+          name="user_name_MB"
+          value={userMB.user_name_MB}
+          onChange={handleChange}
+          required
+        />
+        <select
+            label="Estado"
+            name="is_active"
+            value={userMB.is_active}
+            onChange={handleChange}
+            required
+            >
+            <option value="">Seleccione el estado</option>
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+        </select>
+        <Input
+          label="Nombres"
+          placeholder="Ingrese los nombres"
+          labelPlacement="outside"
+          name="names"
+          value={userMB.names}
           onChange={handleChange}
           required
         />
         <Input
-          label="Marca"
-          placeholder="Ingrese la marca"
+          label="Apellidos"
+          placeholder="Ingrese los apellidos"
           labelPlacement="outside"
-          name="asset_brand"
-          value={asset.asset_brand}
+          name="last_names"
+          value={userMB.last_names}
           onChange={handleChange}
           required
         />
         <Input
-          label="Modelo"
-          placeholder="Ingrese el modelo"
+          label="Numero de Empleado"
+          placeholder="Ingrese el numero de empleado"
           labelPlacement="outside"
-          name="asset_model"
-          value={asset.asset_model}
+          name="employee_number"
+          value={userMB.employee_number}
           onChange={handleChange}
           required
         />
-        <Input
-          label="Serial"
-          placeholder="Ingrese el serial"
-          labelPlacement="outside"
-          name="asset_serial"
-          value={asset.asset_serial}
-          onChange={handleChange}
-          required
-        />
-        <Input
-          label="Numero de Inventario"
-          placeholder="Ingrese el numero de inventario"
-          labelPlacement="outside"
-          name="asset_inventory_number"
-          value={asset.asset_inventory_number}
-          onChange={handleChange}
-          required
-        />
+
+        <select
+            name="branch_id"
+            value={userMB.branch_id}
+            onChange={handleChange}
+            required
+            >
+            <option value="" disabled>
+                Seleccione la sucursal a la que pertenece
+            </option>
+            {store.branchs.map((branch) => (
+                <option key={branch.branch_id} value={branch.branch_id}>
+                {branch.branch_cr}
+                </option>
+            ))}
+        </select>
         
       </div>
       
       <Spacer />
       <ModalFooter>
         <Button type="submit" color="primary" disabled={loading}>
-          {btnAsset}
+          {btnUserMB}
         </Button>
       </ModalFooter>
     </form>

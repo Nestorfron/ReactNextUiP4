@@ -9,6 +9,7 @@ import Dashboard from "./front/pages/dashboard";
 import { Users } from "./front/pages/users";
 import { Branches } from "./front/pages/branches.jsx";
 import { Assets } from "./front/pages/assets.jsx";
+import { UsersMB } from "./front/pages/usersMB.jsx";
 
 function Layout({ pageProps }) {
   return (
@@ -22,6 +23,7 @@ function Layout({ pageProps }) {
             <Route path="/users" element={<Users />} />
             <Route path="/branches" element={<Branches />} />
             <Route path="/assets" element={<Assets />} />
+            <Route path="/usersMB" element={<UsersMB />} />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
         </BrowserRouter>
