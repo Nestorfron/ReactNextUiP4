@@ -1,84 +1,177 @@
-import React from 'react';
-import '../styles/index.css';
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link, Button} from "@nextui-org/react";
+import React, { useContext, useState } from "react";
+import { Context } from "../store/AppContext";
+import { useNavigate } from "react-router-dom";
+import { useTheme } from "next-themes";
+import { Button } from "@nextui-org/button";
+import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
+// import img from "../../img/drapp_logo.png";
 
+import {
+  Navbar as NextUINavbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenuToggle,
+  NavbarMenu,
+  
+} from "@nextui-org/navbar";
 
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Avatar,
+} from "@nextui-org/react";
 
+export const NavBar = () => {
+  const { actions } = useContext(Context);
+  const navigate = useNavigate();
+  const { setTheme, theme } = useTheme();
+  const [isDark, setIsDark] = useState(theme === "dark");
 
-function NavBar() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
-  ];
+  const logout = (e) => {
+    e.preventDefault(); 
+    actions.logout();
+    navigate("/");
+  };
+
+  const toggleTheme = () => {
+    const newTheme = isDark ? "light" : "dark";
+    setTheme(newTheme);
+    setIsDark(!isDark);
+  };
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
-        <NavbarBrand>
-        
-          <p className="font-bold text-inherit">ACME</p>
+    <NextUINavbar isBordered maxWidth="xl" position="sticky">
+      <NavbarContent className="" justify="start">
+      <NavbarMenuToggle size="lg" className="sm:hidden" />
+
+        <NavbarBrand className="gap-3 max-w-fit ">
+          <button
+            className="flex justify-start items-center gap-1 "
+            color="foreground"
+            to="/"
+          >
+            {/* <Avatar src={img} alt="DR-App" className="h-12 w-15 " /> */}
+          </button>
         </NavbarBrand>
+        <div className="hidden sm:flex gap-4 justify- ml-2">
+          <NavbarContent>
+            <NavbarItem >
+              <Button
+                onClick={() => navigate("/users")}
+                variant="link"
+                
+               
+              >
+                Usuarios
+              </Button>
+            </NavbarItem>
+            <NavbarItem className="gap-2" >
+              <Button
+                onClick={() => navigate("/branches")}
+                variant="link"
+              
+              >
+                Sucursales
+              </Button>
+            </NavbarItem>
+            <NavbarItem>
+              <Button
+                onClick={() => navigate("/provider")}
+                variant="link"
+                
+              >
+                Proveedores
+              </Button>
+            </NavbarItem>
+            <NavbarItem>
+              <Button
+                onClick={() => navigate("/assets")}
+                variant="link"
+               
+              >
+                Activos
+              </Button>
+            </NavbarItem>
+            <NavbarItem>
+              <Button
+                onClick={() => navigate("/usersMb")}
+                variant="link"
+               
+              >
+                Usuarios MB
+              </Button>
+            </NavbarItem>
+            <NavbarItem>
+              <Button
+                onClick={() => navigate("/migrations")}
+                variant="link"
+               
+              >
+                Migraciones
+              </Button>
+            </NavbarItem>
+          </NavbarContent>
+        </div>
       </NavbarContent>
-
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
+      <NavbarItem className="flex items-center">
+        <button onClick={toggleTheme} >
+          {isDark ? (
+            <SunIcon className="h-6 w-6" color="primary" variant="shadow" />
+          ) : (
+            <MoonIcon className="h-6 w-6" color="primary" variant="light" />
+          )}
+        </button>
+      </NavbarItem>
+    
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              color={
-                index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
-              }
-              className="w-full"
-              href="#"
-              size="lg"
-            >
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
+        <ul className="flex flex-col space-y-2 p-4 bg-black">
+          {[
+            "users",
+            "branches",
+            "provider",
+            "assets",
+            "usersMb",
+            "migrations",
+          ].map((item) => (
+            <li key={item}>
+              <Button
+                onClick={() => navigate(`/${item}`)}
+                variant="link"
+                className=" w-full text-left"
+              >
+                {item.charAt(0).toUpperCase() + item.slice(1)}
+              </Button>
+            </li>
+          ))}
+        </ul>
       </NavbarMenu>
-    </Navbar>
+      <NavbarItem isActive>
+        <Dropdown placement="bottom-end">
+          <DropdownTrigger>
+            <Avatar
+              isBordered
+              as="button"
+              color="secondary"
+              name="User"
+              size="md"
+              src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+              className="mb-2 mt-2"
+            />
+          </DropdownTrigger>
+          <DropdownMenu aria-label="Profile Actions" variant="flat">
+            <DropdownItem key="profile" className="h-14 gap-2">
+              <p className="font-semibold">Signed in as</p>
+              <p className="font-semibold">user@example.com</p>
+            </DropdownItem>
+            <DropdownItem key="logout" color="danger" onClick={logout}>
+              Log Out
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </NavbarItem>
+    </NextUINavbar>
   );
-}
-
-export default NavBar;
-
+};
