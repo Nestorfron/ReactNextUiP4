@@ -2,21 +2,22 @@ import React, { useContext, useState, useMemo } from "react";
 import { Context } from "../store/AppContext";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import {
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableHeader,
-  TableRow,
-  TableColumn,
-  Input,
-  Pagination,
-} from "@nextui-org/react";
-import { DeleteIcon } from "../components/DeleteIcon.jsx"
+import { DeleteIcon } from "../components/DeleteIcon.jsx";
 import { SearchIcon } from "../components/SearchIcon.jsx";
 import { CreateBranches } from "../components/CreateBranches.jsx";
 import { EditBranches } from "../components/EditBranches.jsx";
+import {
+    Button,
+    Table,
+    TableBody,
+    TableCell,
+    TableHeader,
+    TableRow,
+    TableColumn,
+    Input,
+    Pagination,
+  } from "@nextui-org/react";
+  
 export const Branches = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
@@ -68,7 +69,10 @@ export const Branches = () => {
   };
 
   const topContent = (
-    <div className="flex justify-end gap-3 items-center">
+    <div className="flex justify-between gap-3 items-center">
+         <div className="flex justify-start gap-3 items-center">
+    <span className="text-default-400 text-lg">Total de Sucursales : {store.branchs.length}</span>
+    </div>
       <div className="flex gap-2 items-center">
         <Input
           isClearable
@@ -76,13 +80,14 @@ export const Branches = () => {
           value={filterValue}
           onClear={() => setFilterValue("")}
           onValueChange={setFilterValue}
-          className="w-full sm:max-w-[44%]"
+          className="w-full"
           startContent={<SearchIcon />}
         />
-      </div>
-      <div>
+        <div >
         <CreateBranches />
       </div>
+      </div>
+      
     </div>
   );
 
