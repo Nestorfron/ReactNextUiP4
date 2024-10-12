@@ -17,7 +17,12 @@ const AppContext = ({ children }) => {
   );
 
   useEffect(() => {
-  }, []);
+    state.actions.getUsers();
+    state.actions.getProviders();
+    state.actions.getBranchs();
+    state.actions.getAssets();
+    state.actions.getUsersMB();
+    state.actions.getMigrations();  }, []);
 
   return <Context.Provider value={state}>{children}</Context.Provider>;
 };

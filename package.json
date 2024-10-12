@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@heroicons/react": "^2.1.5",
     "@nextui-org/react": "^2.4.8",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -14,7 +15,9 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "sweetalert2": "^11.14.2",
+    "web-vitals": "^2.1.4",
+    "xlsx": "^0.18.5"
   },
   "scripts": {
     "start": "react-scripts start",
