@@ -6,6 +6,7 @@ import {NavBar} from "../src/front/components/navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./front/pages/dashboard";
 import { Branches } from "./front/pages/branches.jsx";
+import { Assets } from "./front/pages/assets.jsx";
 
 function Layout({ Component, pageProps }) {
   return (
@@ -16,7 +17,7 @@ function Layout({ Component, pageProps }) {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/branches" element={<Branches />} />
-            <Route path="/assets" element={<h1>Assets</h1>} />
+            <Route path="/assets" element={<Assets />} />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
         </BrowserRouter>
