@@ -42,7 +42,7 @@ export const Assets = () => {
     // Asegúrate de que 'status' esté en tus datos para filtrar adecuadamente
     if (statusFilter !== "all") {
       filteredAssets = filteredAssets.filter(
-        (asset) => asset.asset_type === statusFilter // Cambia según tus datos
+        (asset) => asset.asset_type === statusFilter 
       );
     }
 
