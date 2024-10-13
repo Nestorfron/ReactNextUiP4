@@ -3,7 +3,8 @@ import { Context } from "../store/AppContext";
 import Swal from "sweetalert2";
 import { DeleteIcon } from "../components/DeleteIcon.jsx";
 import { SearchIcon } from "../components/SearchIcon.jsx";
-
+import { CreateUsers } from "../components/CreateUsers.jsx";
+import { EditUsers } from "../components/EditUsers.jsx";
 import {
   Avatar,
   Button,
@@ -91,9 +92,7 @@ export const Users = () => {
           </DropdownMenu>
         </Dropdown>
         <div>
-        <Button color="primary" className="items-center gap-2">
-          Crear Usuario
-        </Button>
+        <CreateUsers />
       </div>
       </div>
     
@@ -169,6 +168,7 @@ export const Users = () => {
                 >
                   <DeleteIcon />
                 </Button>
+                <EditUsers user={user} />
               </TableCell>
             </TableRow>
           ))}

@@ -8,6 +8,7 @@ import { Home } from "./front/pages/home";
 import Dashboard from "./front/pages/dashboard";
 import { Users } from "./front/pages/users";
 import { Branches } from "./front/pages/branches.jsx";
+import { Providers } from "./front/pages/providers.jsx";
 import { Assets } from "./front/pages/assets.jsx";
 import { UsersMB } from "./front/pages/usersMB.jsx";
 import { Migrations } from "./front/pages/migrations.jsx";
@@ -23,6 +24,8 @@ function Layout({ pageProps }) {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/users" element={<Users />} />
             <Route path="/branches" element={<Branches />} />
+            <Route path="/providers" element={<Providers />} />
+            <Route path="/assets" element={<h1>Assets</h1>} />
             <Route path="/assets" element={<Assets />} />
             <Route path="/usersMB" element={<UsersMB />} />
             <Route path="/migrations" element={<Migrations />} />

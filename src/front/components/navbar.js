@@ -79,7 +79,7 @@ export const NavBar = () => {
             </NavbarItem>
             <NavbarItem>
               <Button
-                onClick={() => navigate("/provider")}
+                onClick={() => navigate("/providers")}
                 variant="link"
                 
               >

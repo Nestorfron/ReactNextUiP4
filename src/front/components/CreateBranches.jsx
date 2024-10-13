@@ -106,7 +106,7 @@ export const CreateBranches = () => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader>Crear Sucursal</ModalHeader>
+              <ModalHeader>Crear Sucursal Nueva</ModalHeader>
               <ModalBody>
                 <h5>Cargar Archivo Excel</h5>
                 <Input
