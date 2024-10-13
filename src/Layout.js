@@ -9,8 +9,11 @@ import Dashboard from "./front/pages/dashboard";
 import { Users } from "./front/pages/users";
 import { Branches } from "./front/pages/branches.jsx";
 import { Providers } from "./front/pages/providers.jsx";
+import { Assets } from "./front/pages/assets.jsx";
+import { UsersMB } from "./front/pages/usersMB.jsx";
+import { Migrations } from "./front/pages/migrations.jsx";
 
-function Layout({ Component, pageProps }) {
+function Layout({ pageProps }) {
   return (
     <NextUIProvider>
       <NextThemesProvider attribute="class" defaultTheme="dark">
@@ -23,6 +26,9 @@ function Layout({ Component, pageProps }) {
             <Route path="/branches" element={<Branches />} />
             <Route path="/providers" element={<Providers />} />
             <Route path="/assets" element={<h1>Assets</h1>} />
+            <Route path="/assets" element={<Assets />} />
+            <Route path="/usersMB" element={<UsersMB />} />
+            <Route path="/migrations" element={<Migrations />} />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
         </BrowserRouter>
