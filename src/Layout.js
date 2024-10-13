@@ -10,6 +10,7 @@ import { Users } from "./front/pages/users";
 import { Branches } from "./front/pages/branches.jsx";
 import { Assets } from "./front/pages/assets.jsx";
 import { UsersMB } from "./front/pages/usersMB.jsx";
+import { Migrations } from "./front/pages/migrations.jsx";
 
 function Layout({ pageProps }) {
   return (
@@ -24,6 +25,7 @@ function Layout({ pageProps }) {
             <Route path="/branches" element={<Branches />} />
             <Route path="/assets" element={<Assets />} />
             <Route path="/usersMB" element={<UsersMB />} />
+            <Route path="/migrations" element={<Migrations />} />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
         </BrowserRouter>
