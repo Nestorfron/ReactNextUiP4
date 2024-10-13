@@ -8,6 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       usersMB: [],
       migrations: [],
       role: ["Master", "Admin", "Ingeniero de Campo"],
+      me: ""
     },
     actions: {
       ////////////  USER SECTION //////////////////
